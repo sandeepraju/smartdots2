@@ -1,0 +1,6 @@
+help
+about 
+highscore
+exit
+
+exit | about | high | help | play

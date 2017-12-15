@@ -1,0 +1,504 @@
+%\documentclass[pdftex,12pt,a4paper]{report}
+\documentclass[a4paper,12pt]{article}
+
+%\documentclass[11pt,a4paper,oneside]{report}
+\usepackage[top=0.75in, bottom=0.75in, left=1.25in, right=0.75in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{chancery}
+\usepackage{fancyhdr}
+\usepackage{calligra}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{subfigure}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{verbatim}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+%\usepackage{titlesec}
+%\titlespacing*{\chapter}{0pt}{-50pt}{20pt}
+%\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\begin{document}
+
+\renewcommand*\rmdefault{ppl}\normalfont\upshape
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+\input{./Title.tex}
+\input{./Certificate.tex}
+
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+
+\newpage
+\section*{\Huge{Acknowledgment}}
+\hspace{18pt}We sincerely thank the department for giving us an opportunity to explore new avenues and implement the theoretical knowledge that we have learnt. We wish to express our sincere gratitude to Prof. Nitin V Pujari, HOD, Computer Science Department, PESIT for providing us with an opportunity to carry out the special topic on 'SmartDots'. We also wish to express our gratitude to Prof. Krupesha D, Computer Science Department, PESIT for providing us with the guidance needed. A special mention must be made about the Nokia Mobile Innovation Lab that provided us with all the necessary resources and gave us enriching support.
+
+\newpage
+\section*{\Huge{Abstract}}
+\hspace{18pt}SmartDots is a two player classic board game. The board consists of required number of dots. The game starts with each player connecting any two dots of his choice with a line. Thus each player marks a single line in his/her turn. The primary motive of the game is to complete as many boxes as possible. The player who completes a box in his/her turn gets to play the next chance as well. The game can be played against the phone or against any one you wish. To play with the phone an exclusive AI algorithm has been designed.\\
+
+The game also boasts of the reverse implementation of the normal game where in the user has to achieve as few boxes as possible to win. It comprises of different levels to enable the user to smoothly sail through the game. It has an interactive user interface design. It involves the storing of level specific high score.
+\newpage
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{Introduction}
+\hspace{18pt}%In this age, where there is an ever growing demand for mobile phones, and a never ending  zeal for gaming we thought we could come up with a game application for mobiles which gave rise to SmartDots. As engineers, we should really not look up to others when we want something on the technical front. If we want something, we should get it ourselves. So when we were playing this game in accordance with the convention on a Sunday morning, we thought of some modifications that would bring even more excitement. This very thought motivated us to take it up as our special topic project.%
+SmartDots is a mobile application developed for Qt enabled Nokia mobile phones. It is a strategy game which has a grid of dots. The user should draw a line between the dots by taking turns alternatively. The aim of the game is to make complete boxes by joining dots. The final winner will be the one who has the most number of boxes in the grid. An exclusive algorithm has been developed so a player can play with the phone just like he plays with any other player. A view of the game in progress is shown in the figure.
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{screenshots/intropic.png}
+\caption{Sample play of the game}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+
+%\newpage
+\section{Problem Definition}
+\hspace{18pt}%The classic game 'Dots' had attracted our attention and it was our wish to design the algorithm for it ourselves with a beautiful and a walk-in-the-park user interface. Soon, we made this wish a responsibility and began implementing the algorithm. In course of development of the game, there came a thought to do something excitingly innovative. This led to the dawn of Reverse Dots.%
+The problem definition of this project was simple. We had to implement the classic game of dots and boxes in a touch screen mobile phone with an attractive user interface design. The game also required a robust algorithm which could compete with the player in one player mode of the game. This algorithm was required to be flexible enough to cater to all the levels of the game. We also had to implement a reverse version of the game and thus an algorithm for reverse dots as well had to be designed.
+
+%\newpage                                                                                       	
+\section{Literature Survey}
+\hspace{18pt}We made extensive research on how the game is played and got ourselves familiar with the game. We went about searching on how to implement the game on such a small screen and with only limited resources. \\
+
+Wikipedia (http://en.wikipedia.org/wiki/Dots\_and\_Boxes) provided with the complete rules of the game and all its variations. We chose Qt as we were already familiar with it.\\
+
+
+As 'Qt' is an opensource platform there was no dearth for learning resources. The official Qt documentation (http://doc.qt.nokia.com) provided more than enough resources to learn. Nokia developer website (http://www.developer.nokia.com) provided with all the developer tools. One of the major source of resource and help was the \#qt-qml IRC (Internet Relay Chat) channel on freenode (www.freenode.net).\\
+
+The W3C website (http://www.w3schools.com) provides a wealth of resource for the JavaScript programming language.\\
+
+Tizag tutorials (http://www.tizag.com/javascriptT/) provided us with all the required help for JavaScript.
+
+
+%\newpage 
+\section{Project Requirement Definition}  
+\hspace{18pt}The development involves the use of a declarative language called QML for User Interface design. The User Interface involves a lot of creativity in designing customized elements for enhanced user experience. Adobe Photoshop CS5 is one of the widely used tools for this purpose. These customized elements had to be integrated with QML to achieve the full User-Interface of the game. The AI for the game was initially developed using C++, for the pure reasons of better familiarity. Later on, it was converted to JavaScript to integrate it with the User Interface. As C++ is statically scoped and JavaScript is dynamically scoped, the conversion was a tedious process.\\
+
+Two important softwares were required for this game
+\begin{enumerate}
+ \item Adobe Photoshop CS5
+ \item Qt Creator
+\end{enumerate}
+
+\subsection{Adobe Photoshop CS5}
+\hspace{18pt}Adobe Photoshop CS5 is a professional image manipulation software user all over. This software provides with various options for graphics designing and rapid development of User Interface.
+
+\subsection{Qt Creator}
+\hspace{18pt}Qt Creator is a standard IDE for application development in Qt. It has all the tools required to build mobile applications. It consists of an inbuilt emulator to debug and test the applications on the fly. The IDE also provides facilities to test and debug our applications remotely via the 'remote compiler option'.
+
+\newpage                                                                  	
+\section{System Requirement Specification}
+\hspace{18pt}The basic requirements of the phone required to run SmartDots is as follows
+\begin{enumerate}
+ \item Touchscreen mobile phone having a minimum resolution of 640px $\times$ 480px and have Qt platform installed in them
+ \item Mobile phones having any of these Operating systems
+        \begin{enumerate}
+	\item Symbian
+        \item Meego
+        \item Maemo
+        \item Windows Phone 7.5
+        \item Android        
+	\end{enumerate}
+ 
+\end{enumerate}
+
+%\newpage
+\section{System Design}
+\hspace{18pt}System design is the bridge between system and requirements analysis and system implementation. Some of the essential fundamental concepts involved in the design of applications are
+\begin{enumerate}
+ \item Abstraction 
+ \item Modularity
+ \item Verification
+\end{enumerate}
+
+\subsection{Abstraction}
+Abstraction is used to construct solutions to problems without having to take account of the intricate details of the various components sub-programs. Abstraction allows system designer to make step-wise refinements by which at each stage of the design unnecessary details associated with representation or implementation may be hidden from the surrounding environment.
+
+\subsection{Modularity}
+Modularity is concerned with decomposing of main module into well defined, manageable units with well-defined interfaces among the units. This enhances design, clarity, which in turn eases implementation, debugging, testing and documentation maintaining of the software product. 
+
+\subsection{Verification}
+Verification is a fundamental concept in software design. It can be demonstrated that the design will result in an implementation, which satisfies the customers' requirements.
+
+
+
+%\newpage
+\section{Detailed Design}
+\hspace{18pt}Our application consisted of two parts.
+\begin{enumerate}
+ \item UI design using QML
+ \item Algorithm design using JavaScript
+\end{enumerate}
+
+The interaction between UI and Algorithm and its place in Qt application structure is as shown in the figure. 
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{screenshots/qtapp.png}
+\caption{Qt application structure and its hierarchy in the system}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+Some of the main modules in the algorithms are as follows
+
+\subsection{AI Coordinate Generator}
+\begin{verbatim}
+                                             
+function AIcoordinateGenerator()
+{
+ if(level is beginner)
+   /*In this level artificial intelligence intentionally 
+   gives up a box for the user in the 24th move of the game*/
+    if(it is move no. 24)
+       
+        getThree();
+        /* getThree() is a method which
+        finds a box with 3 lines marked. */
+        //mark the appropriate line in the appropriate box.
+          if(getThree = null)
+            getTwo();
+        /*getTwo() is a method which
+        finds a box with 2 lines marked*/
+        //mark the appropriate line in the box.
+             if(getTwo = null)
+               getOne();
+           /*getOne() is a method which
+          finds a box with 1 lines marked*/
+        //mark the appropriate line in the box.
+                if(getOne = null)
+                   getZero();
+          /*getZero() is a method which 
+          finds a box with 0 lines marked*/
+        //mark the appropriate line in the box.
+        
+       else
+        
+         getThree();
+        
+        //mark the appropriate line in the appropriate box.
+          if(getThree = null)
+          getOne();
+        
+        //mark the appropriate line in the box.
+            if(getOne = null)
+             getZero();
+           
+        //mark the appropriate line in the box.
+               if(getZero = null)
+                 getTwo();
+          
+        //mark the appropriate line in the box.
+
+ else if(level is intermediate)
+   /*In this level artificial intelligence
+   unintentionally gives up a box for the user*/
+    
+     getThree();
+        
+        //mark the appropriate line in the appropriate box.
+          if(getThree = null)
+          getOne();
+        
+        //mark the appropriate line in the box.
+            if(getOne = null)
+             getZero();
+           
+        //mark the appropriate line in the box.
+               if(getZero = null)
+                 getTwo();
+          
+        //mark the appropriate line in the box.
+
+  else if(level is expert)
+   /*In this level artificial 
+   intelligence never gives up a box*/  
+
+     getThree();
+        
+        //mark the appropriate line in the appropriate box.
+          if(getThree = null)
+          getOne();
+        
+        //mark the appropriate line in the box.
+            if(getOne = null)
+             getZero();
+           
+        //mark the appropriate line in the box.
+               if(getZero = null)
+                 getTwo();
+          
+        //mark the appropriate line in the box.  
+}
+//end of AIcoordinateGenerator()
+
+
+\end{verbatim}
+
+
+\subsection{Other Supporting Functions}
+\begin{verbatim}
+
+function getOne()
+{
+ Select a random box with only 1 line marked
+ if(level is expert)
+   while(the selected box has boxes around it with 2 lines marked)
+         Select another box with 1 line marked
+}
+
+function getZero()
+{
+ Select a random box with no lines marked
+ if(level is expert)
+   while(the selected box has boxes around it with 2 lines marked)
+         Select another box with no lines marked
+
+}
+
+function setWinnerFlagIf4(row,col)
+{
+ //update the database if a box has been completed
+ //receives the row and column of the marked line as parameters
+ /*tempSum is a variable which keeps track 
+ of whether a box has been completed. It is set to 4 if a box 
+ has been completed or else it is set to 0*/ 
+ calculate tempSum
+ if(tempSum = 4)
+   set winnerFlag to 1
+   /*winnerFlag is a variable used to highlight 
+   the appropriate box in the User Interface.*/
+   //no player switch.
+ else
+   switch the player
+} 
+
+\end{verbatim}                                             
+
+
+%\newpage
+\section{Implementation}
+\hspace{18pt}The game was implemented majorly in two programming languages
+\begin{enumerate}
+ \item QML (Qt Meta Language)
+ \item JavaScript
+\end{enumerate}
+
+\subsection{QML (Qt Meta Language)}
+\hspace{18pt}QML (Qt Meta Language or Qt Modeling Language) is a JavaScript-based, declarative language for designing user interface centric applications. It is part of Qt Quick, the UI creation kit developed by Nokia within the Qt framework. QML is mainly used for mobile applications where touch input, fluid animations (60 FPS) and user experience are crucial. QML documents describe an object tree of elements. QML elements shipped with Qt are a sophisticated set of building blocks, graphical (e.g., rectangle, image) and behavioral (e.g., state, transition, animation). These elements can be combined to build components ranging in complexity from simple buttons and sliders, to complete internet-enabled programs. QML elements can be augmented by standard JavaScript both inline and via included .js files. Elements can also be seamlessly integrated and extended by C++ components using the Qt framework.
+
+\subsubsection{Role of QML in our game}
+\hspace{18pt}QML was used extensively to design the User Interface and the animations in it. QML consisted of defining the actions for various components of the design. Its was seamlessly combined with the designs generated using Adobe Photoshop CS5.\\
+
+We have used QML Listview element for the help file. It creates a nice Flickable interface for easy user interaction. For all the animations in the user interface we have used QML Number Animation element which moves the user interface elements according to the defined animation. The QML MouseArea element has been used to create click the mouse areas to interact with the user.
+
+\subsection{JavaScript}
+\hspace{18pt}JavaScript is a prototype-based scripting language that is dynamic, weakly typed and has first-class functions. It is a multi-paradigm language, supporting object-oriented, imperative, and functional programming styles. JavaScript's use in applications outside Web pages for example in PDF documents, site specific browsers, mobile applications and desktop widgets are significant.
+
+\subsubsection{Role of JavaScript in our game}
+\hspace{18pt}JavaScript was extensively used to define and implement the algorithm initially designed in C++. JavaScript beautifully and seamlessly handled the AI algorithm and its responses which should trigger appropriate actions in the User Interface end.\\
+
+In JavaScript we have used the standard components and data structures like arrays. Extensive use of logging has been made for debugging and testing purposes. The 'console.log ()' function has been used for this purpose.
+
+
+%\newpage
+\section{Integration}   
+\hspace{18pt}We had to cope with two kinds of integrations. 
+\begin{enumerate}
+ \item Photoshop - QML
+ \item QML - JavaScript
+\end{enumerate}
+
+\subsection{Photoshop - QML}
+\hspace{18pt}This phase of QML formed the front end of our project. It dealt with using images in various aspects of the user interface in order to beautify the game and help user in all possible ways to get through the initial part of the application with ample ease and comfort.
+
+\subsection{QML - JavaScript}
+\hspace{18pt}This formed the back end and quite easily the most challenging part of the project. Relevant parts of the algorithm had to be employed in different areas of the user interface to ensure the correct working of the game. We faced some constraints regarding the integration such as some parts of JavaScript being disabled while being integrated into QML. So we suitably changed the implementation quite a number of times to ensure the integrated final product works absolutely fine.\\
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.6]{screenshots/impl.png}
+\caption{Integration and interfacing of UI and Algorithm}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+\newpage
+\section{Testing}
+\hspace{18pt}The Fig below shows a five stage testing process where system components are tested, the integrated system is tested and, finally, the system is tested with the customer's data. Ideally, component defects are discovered early in the process and interface problem when the system is integrated. However, as defects are discovered the program must be debugged and this may require other stages in the testing process to be repeated. Errors in program components may come to light during integration testing. The process is therefore an iterative one with information being fed back from later stages to early parts of the process.\\
+
+%testing diagram goes here
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.6]{screenshots/testing2.jpg}
+\caption{Figure depicting the five stage testing process}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+\subsection{Component Testing}
+\subsubsection{Unit Testing}
+\hspace{18pt}Unit testing is essential for the verification of the code produced during the coding phase and the goal is to test the internal logic of the module/program. Each and every class of the 'SmartDots' was considered as a single unit and was tested individually to confirm its functional correctness.
+
+\subsubsection{Integration Testing}
+\hspace{18pt}The Integration Testing consists of three parts
+\begin{enumerate}
+ \item Module Testing\\
+A module is a collection of dependent components such as classes and datatypes.
+A module encapsulates related components, so can be tested without other system modules.
+ \item Sub-System Testing\\
+All the tested modules are combined into sub systems, which are then tested. The goal is to see if the modules are properly integrated, and the emphasis being on the testing interfaces between the modules.
+ \item System Testing\\
+The sub-systems are integrated to make up the system. this process is concerned with finding errors that result from unanticipated interactions between sub-systems and 
+sub-system interface problems. It is mainly used if the software meets its requirements. The reference document for this process is the requirement document.
+\end{enumerate}
+
+\subsubsection{User Testing}
+\hspace{18pt}This phase is also called as acceptance testing. This is the final stage in the testing process before the system is accepted for operational use. The system is tested with data supplied by the system customer rather than simulated test data.
+
+\subsection{Testing Methods}
+\hspace{18pt}Testing is a process of executing a program to find out errors. If testing is conducted successfully, it will uncover all the errors in the software. Any testing can be done basing on two ways
+
+\subsubsection{White Box Testing}
+\hspace{18pt}It is a test case design method that uses the control structures of the procedural design to derive test cases. Using this testing a software Engineer can derive the following test cases
+
+\begin{enumerate}
+ \item Exercise all the logical decisions on either true or false sides.
+ \item Execute all loops at their boundaries and within their operational boundaries.
+ \item Exercise the internal data structures to assure their validity.
+\end{enumerate}
+
+\subsubsection{Black Box Testing}
+\hspace{18pt}It is a test case design method used on the functional requirements of the software. It will help a software engineer to derive sets of input conditions that will exercise all the functional requirements of the program. Black Box testing attempts to find errors in the following categories
+
+\begin{enumerate}
+ \item Incorrect or missing functions.
+ \item Interface errors.
+ \item Errors in data structures.
+ \item Performance errors.
+\end{enumerate}
+
+
+
+The game has been exhaustively tested by official Nokia QA Team at Nokia Quality Testing Center, Canada. We have tested the game locally on Nokia C7-00 and Nokia N8 devices successfully.\\
+
+%The testing phase was divided into two phases
+%\begin{enumerate}
+% \item User Interface
+% \item Algorithm
+%\end{enumerate}
+
+%this should be a subsection
+%\subsection{User Interface}
+%\hspace{18pt}The user interface testing focused on finding ways to ensure that the user has absolutely no trouble in relishing the game. We played the role of a user and tested it iteratively to see to it that any kind of user does not find himself at sea
+
+%\subsection{Algorithm}
+%\hspace{18pt}The algorithm testing basically emphasized on analyzing all possible cases that the game needed to handle. It was initially tested on an empty console to first ensure that there is absolutely no problem with it so that the integration of the algorithm with the user interface faces no obstacles what so ever. A lot of time was allotted as the game involved numerous cases.
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.5]{screenshots/testing-game.jpg}
+\caption{Modularized testing of Algorithm and User Interface}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+
+\newpage
+\section{Conclusion}
+\hspace{18pt}The mobile application is thoroughly and satisfactorily complete in all aspects of game development. After rigorous testing at the Nokia Testing Center, Canada and by the OVI QA team, the application was published in the Nokia OVI Store on 18/11/2011. It is enjoying a good number of downloads and is one of the top applications for Nokia C7 and Nokia N8 devices on the OVI Store. The application fetched downloads of more than 100 on the first day of its appearance on the OVI Store. It is being downloaded across 75 countries. The application can be downloaded at http://store.ovi.com/content/220031
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.65]{screenshots/dwscr1.jpg}
+\caption{Screenshot from Nokia OVI store download page}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+\newpage
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.65]{screenshots/dwscr2.jpg}
+\caption{Screenshot from Nokia OVI store downloads page contd.}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+                                                                                                          
+
+\newpage
+\section{Future Enhancement}
+\hspace{18pt}The future enhancements of the game are as follows
+\begin{enumerate}
+ \item As the KDE is entirely built on Qt, this game will be ported to Kubuntu, Fedora and many other Linux distributions as a desktop application.
+ \item Background music will be added to enhance the player experience of the game.
+ \item Portability of the game will be increased by modifying the screen size to fit most Nokia mobile phones.
+ \item As per the reviews from the user who downloaded the game from Nokia Ovi Store, appropriate modifications and enhancements will be done. 
+\end{enumerate}
+
+\newpage
+\section{Screenshots of SmartDots}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{screenshots/scr1.jpg}
+\caption{Play menu}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{screenshots/scr2.jpg}
+\caption{Level select menu}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{screenshots/scr3.jpg}
+\caption{Play area}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{screenshots/scr4.jpg}
+\caption{Pause menu}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{screenshots/scr5.jpg}
+\caption{Help view}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{screenshots/scr6.jpg}
+\caption{Result view}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.4]{screenshots/scr7.jpg}
+\caption{About view}
+%\label{4_learning_phase_diag}
+\end{figure}
+
+\newpage                                                                                	
+\bibliographystyle{plain}  
+%\bibliography{references}\newpage
+
+\end{document}
